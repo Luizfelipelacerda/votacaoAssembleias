@@ -24,6 +24,7 @@ public class VoteService {
     private final PautaService pautaService;
     private final VotadorServer votadorServer;
 
+    private final CpfValidatorServer cpfValidatorServer;
 
     public void votarEmPauta(VoteDTO voteDTO) {
         Optional<Pauta> pautaFound = this.pautaService.getPautaById(voteDTO.getPautaId());
@@ -34,6 +35,11 @@ public class VoteService {
         LocalDateTime dataFinal = pauta.getPautaDataDeCriacao().plusMinutes(Long.valueOf(pauta.getPautaTempoDeAbertura()));
         if (LocalDateTime.now().isAfter(dataFinal)){
             throw new VotingTimeExpiredException("Tempo de votação expirado.");
+        }
+        RetornoCPFApi isCPFValid = this.cpfValidatorServer.validateCPF(voteDTO.getCpfVoter());
+
+        if(!isCPFValid.getValid()){
+            throw new VotingTimeExpiredException("CPF Invalido.");
         }
         Boolean hasVoted = this.votadorServer.hasVotadorVoted(pauta.getPautaId(), voteDTO.getCpfVoter());
         if(hasVoted){
