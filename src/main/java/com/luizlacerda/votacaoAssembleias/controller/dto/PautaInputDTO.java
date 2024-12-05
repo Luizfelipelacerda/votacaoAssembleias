@@ -10,4 +10,11 @@ public class PautaInputDTO {
 
     private int pautaTempoDeAbertura;
 
+    public PautaInputDTO() {
+    }
+
+    public PautaInputDTO(String pautaName, int pautaTempoDeAbertura){
+        this.pautaName = pautaName;
+        this.pautaTempoDeAbertura = pautaTempoDeAbertura;
+    }
 }
