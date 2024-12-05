@@ -29,4 +29,18 @@ public class GlobalExceptionHandler {
                 .body(ex.getMessage());
     }
 
+    @ExceptionHandler(NoNamePautaException.class)
+    public ResponseEntity handleNoNamePautaException(NoNamePautaException ex){
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(PautaDoesExistException.class)
+    public ResponseEntity handlePautaDoesExistException(PautaDoesExistException ex){
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ex.getMessage());
+    }
+
 }

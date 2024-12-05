@@ -35,11 +35,11 @@ public class Pauta {
         this.pautaTempoDeAbertura = dataAbertura;
     }
 
-    public Pauta(UUID pautaId, String name, LocalDateTime dataDeCriacao, int dataAbertura, String pautaResultado){
+    public Pauta(UUID pautaId, String name, LocalDateTime dataDeCriacao, int pautaTempoDeAbertura, String pautaResultado){
         this.pautaId = pautaId;
         this.pautaName = name;
         this.pautaDataDeCriacao = dataDeCriacao;
-        this.pautaTempoDeAbertura = dataAbertura;
+        this.pautaTempoDeAbertura = pautaTempoDeAbertura;
         this.pautaResultado = pautaResultado;
     }
 }

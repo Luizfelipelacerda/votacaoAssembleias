@@ -5,6 +5,7 @@ import com.luizlacerda.votacaoAssembleias.controller.dto.PautaInputDTO;
 import com.luizlacerda.votacaoAssembleias.model.Pauta;
 import com.luizlacerda.votacaoAssembleias.service.PautaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,9 +29,9 @@ public class PautaController {
     @PostMapping("/createPauta")
     public ResponseEntity<PautaDTO> createNewPauta(@RequestBody PautaInputDTO newPautaDTO){
         PautaDTO newPauta = this.pautaService.createNewPauta(newPautaDTO);
-        return ResponseEntity.ok(newPauta);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(newPauta);
     }
-    
-
 
 }
